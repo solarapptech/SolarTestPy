@@ -1,33 +1,35 @@
+var cors = require('cors')
 const express = require ('express')
 const app = express ()
 // const port = 8000
 let server = app.listen(8000);
 server.keepAliveTimeout = 80000;
 server.headersTimeout = 81000;
+app.use(cors())
 
 // Fecha de Actualizado
-let fechas = "Sab 3  -  1:00 PM.";
+let fechas = "Mar. 19 de Nov 5:20 PM";
 
 // Banco Central
-let tasabcv = 36.28;
+let tasabcv = 45.84;
 
 // Euro
-let tasaeuro = 39.16;
+let tasaeuro = 48.53;
 
 // Monitor Dolar
-let tasamonitor = 38.09;
+let tasamonitor = 55.20;
 
 // Binance
-let tasabinance = 38.01;
+let tasabinance = 56.00;
 
 // PayPal
-let tasapaypal = 33.30;
+let tasapaypal = 49.00;
 
 // Version Actual
 let cur_version = 3;
 
 // Valor Alterable
-let xval = 5;
+let xval = 4;
 
 
 // app.use((req, res, next) => {
@@ -57,75 +59,84 @@ app.get ('/info1', (req, res) =>{
    res.setHeader('Content-Type', 'text/event-stream')
    res.setHeader('Access-Control-Allow-Origin', '*')
 
-    const intervalId = setInterval(() =>{
     const sendData = `data: ${JSON.stringify(tasabcv) +' Bs.'}\n\n`;
     res.write(sendData);
-   },700)
+
+})
+
+// app.get ('/info1', (req, res) =>{
+//   res.setHeader('Content-Type', 'text/event-stream')
+//   res.setHeader('Access-Control-Allow-Origin', '*')
+
+//   request('*', function (error, response, body) {
+//    if (!error && response.statusCode == 200) {
+//      const sendData = `data: ${JSON.stringify(tasabcv) +' Bs.'}\n\n`;
+//      res.write(sendData);
+//   }
+//  });
+// })
 
 
 
 app.get ('/info2', (req, res) =>{
       res.setHeader('Content-Type', 'text/event-stream')
       res.setHeader('Access-Control-Allow-Origin', '*')
+   
 
-      const intervalId = setInterval(() =>{
       const sendData2 = `data: ${JSON.stringify(tasamonitor) +' Bs.'}\n\n`;
       res.write(sendData2);
-    },700)
 
+})
 
 
     app.get ('/info3', (req, res) =>{
       res.setHeader('Content-Type', 'text/event-stream')
       res.setHeader('Access-Control-Allow-Origin', '*')
-
-      const intervalId = setInterval(() =>{
+       
         const sendData3 = `data: ${JSON.stringify(fechas)}\n\n`
         res.write(sendData3);
-    },700)
-      
+       
+  }) 
 
       app.get ('/info4', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
         res.setHeader('Access-Control-Allow-Origin', '*')
-  
-        const intervalId = setInterval(() =>{
+         
         const sendData4 = `data: ${tasaeuro}\n\n`;
         res.write(sendData4);
-      },700)
 
+         
+    })
 
       app.get ('/info5', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
         res.setHeader('Access-Control-Allow-Origin', '*')
-  
-        const intervalId = setInterval(() =>{
+         
+
           const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
           res.write(sendData5);
 
-      },700)
-
+    })
 
       app.get ('/info6', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
         res.setHeader('Access-Control-Allow-Origin', '*')
-  
-        const intervalId = setInterval(() =>{
+         
+
           const sendData6 = `data: ${JSON.stringify(tasapaypal) +' Bs.'}\n\n`;
           res.write(sendData6);
 
-      },700)
+    })
 
       app.get ('/info7', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
         res.setHeader('Access-Control-Allow-Origin', '*')
-  
-        const intervalId = setInterval(() =>{
+         
+
           const sendData7 = `data: ${JSON.stringify(cur_version)}\n\n`;
           res.write(sendData7);
 
-      },700)
-
+})
      
     // app.get ('/info6', (req, res) =>{
     //    res.setHeader('Content-Type', 'text/event-stream')
@@ -149,18 +160,12 @@ app.get ('/info2', (req, res) =>{
 
         
 
-      res.on('close', () =>{
-        console.log('Client Closed Connection')
-        clearInterval(intervalId)
-      res.end()
-     })
-   })
-  })
- })
-})
-})
-})
-})
+//       res.on('close', () =>{
+//         console.log('Client Closed Connection')
+//         clearInterval(intervalId)
+//       res.end()
+// })
+
 
 // Version 2
 
@@ -173,10 +178,10 @@ res.setHeader("Access-Control-Allow-Origin", "*")
         "content-Type": "text/event-stream"
     });
 
-const intervalId = setInterval(() =>{
+
 const sendDatab = `data: ${JSON.stringify(tasabcv)}\n\n`;
 res.write(sendDatab);
-},700)
+
 })
 
 
