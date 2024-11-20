@@ -1,3 +1,12 @@
+var cors = require('cors')
+const express = require ('express')
+const app = express ()
+// const port = 8000
+let server = app.listen(8000);
+server.keepAliveTimeout = 80000;
+server.headersTimeout = 81000;
+app.use(cors())
+
 const spawner = require('child_process').spawn;
 
 const bnc_data = 10;
