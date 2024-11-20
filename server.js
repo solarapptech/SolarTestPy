@@ -14,7 +14,7 @@ const python_process = spawner('python', ['./apibnc.py', bnc_data]);
 
 python_process.stdout.on('data', (data) => {
   
-      tasabinance = data.toString();
+      tasabinance = data;
 
 app.get ('/info5', (req, res) =>{
    res.setHeader('Content-Type', 'text/event-stream')
