@@ -16,5 +16,15 @@ python_process.stdout.on('data', (data) => {
   
       tasabinance = data.toString();
 
+app.get ('/info5', (req, res) =>{
+   res.setHeader('Content-Type', 'text/event-stream')
+   res.setHeader('Access-Control-Allow-Origin', '*')
+
+  const sendData = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+  res.write(sendData);
+
+})
+
+
 });
 
