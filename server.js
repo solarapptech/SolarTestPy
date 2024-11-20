@@ -14,9 +14,13 @@ const python_process = spawner('python', ['./apibnc.py', bnc_data]);
 
 python_process.stdout.on('data', (data) => {
   
-      tasabinance = data.toString();
+  tasabinance = data.toString();
+  new_info();
 
-app.get ('/info5', (req, res) =>{
+});
+
+function new_info(){
+  app.get ('/info5', (req, res) =>{
    res.setHeader('Content-Type', 'text/event-stream')
    res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -24,7 +28,6 @@ app.get ('/info5', (req, res) =>{
   res.write(sendData);
 
 })
-
-
-});
+}
+  
 
