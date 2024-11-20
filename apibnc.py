@@ -45,8 +45,9 @@ while True:
    promedio = sum(numeros) / len(numeros)
 
    # print(asset, "<--->",fiat,round(promedio,2))
-   print(round(promedio,2))
 
    output = round(promedio,2)
+   print(round(promedio,2))
+   
    sys.stdout.flush()
    time.sleep(3)
