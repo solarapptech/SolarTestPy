@@ -43,7 +43,8 @@ numeros = [price1, price2, price3, price4, price5, price6, price7, price8, price
 
 promedio = sum(numeros) / len(numeros)
 
-   # print(asset, "<--->",fiat,round(promedio,2))
+# print(asset, "<--->",fiat,round(promedio,2))
+print(round(promedio,2))
 
 output = round(promedio,2)
 sys.stdout.flush()
