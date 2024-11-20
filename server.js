@@ -44,7 +44,7 @@ python_process.stdout.on('data', (data) => {
 
 });
 
-pythonProcess.stdout.on('close', (data) => { 
+python_process.stdout.on('end', (data) => { 
   
       app.get ('/info5', (req, res) =>{
       res.setHeader('Content-Type', 'text/event-stream')
