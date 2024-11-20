@@ -20,7 +20,7 @@ let tasaeuro = 48.53;
 let tasamonitor = 55.20;
 
 // Binance
-let tasabinance = 56.00;
+let tasabinance;
 
 // PayPal
 let tasapaypal = 49.00;
@@ -31,6 +31,25 @@ let cur_version = 3;
 // Valor Alterable
 let xval = 4;
 
+const bnc_data = 0;
+
+const python_process = spawner('python', ['./apibnc.py', bnc_data]);
+
+python_process.stdout.on('data', (data) => {
+
+  tasabinance = data.toString();
+   
+  app.get ('/info5', (req, res) =>{
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+         
+
+  const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+  res.write(sendData5);
+})
+  // console.log(`Output: ${data.toString()}`);
+
+});
 
 // app.use((req, res, next) => {
 //   res.setHeader(
@@ -108,15 +127,15 @@ app.get ('/info2', (req, res) =>{
          
     })
 
-      app.get ('/info5', (req, res) =>{
-        res.setHeader('Content-Type', 'text/event-stream')
-        res.setHeader('Access-Control-Allow-Origin', '*')
+   // app.get ('/info5', (req, res) =>{
+   //      res.setHeader('Content-Type', 'text/event-stream')
+   //      res.setHeader('Access-Control-Allow-Origin', '*')
          
 
-          const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
-          res.write(sendData5);
+   //        const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+   //        res.write(sendData5);
 
-    })
+   //  })
 
       app.get ('/info6', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
