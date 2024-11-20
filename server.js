@@ -44,6 +44,18 @@ python_process.stdout.on('data', (data) => {
 
 });
 
+pythonProcess.stdout.on('close', (data) => { 
+  
+      app.get ('/info5', (req, res) =>{
+      res.setHeader('Content-Type', 'text/event-stream')
+      res.setHeader('Access-Control-Allow-Origin', '*')
+             
+    
+      const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+      res.write(sendData5);
+    })
+});
+
 // app.use((req, res, next) => {
 //   res.setHeader(
 //     "Access-Control-Allow-Origin",
@@ -138,15 +150,6 @@ app.get ('/info2', (req, res) =>{
           const sendData6 = `data: ${JSON.stringify(tasapaypal) +' Bs.'}\n\n`;
           res.write(sendData6);
 
-    })
-
-    app.get ('/info5', (req, res) =>{
-      res.setHeader('Content-Type', 'text/event-stream')
-      res.setHeader('Access-Control-Allow-Origin', '*')
-             
-    
-      const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
-      res.write(sendData5);
     })
 
       app.get ('/info7', (req, res) =>{
