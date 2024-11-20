@@ -38,9 +38,10 @@ const bnc_data = 10;
 const python_process = spawner('python', ['./apibnc.py', bnc_data]);
 
 python_process.stdout.on('data', (data) => {
-
-  tasabinance = data.toString();
   
+  const intervals = setInterval(() =>{
+  tasabinance = data.toString();
+
   app.get ('/info5', (req, res) =>{
       res.setHeader('Content-Type', 'text/event-stream')
       res.setHeader('Access-Control-Allow-Origin', '*')
@@ -49,6 +50,7 @@ python_process.stdout.on('data', (data) => {
       const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
       res.write(sendData5);
   })
+  },2000);
   // console.log(`Output: ${data.toString()}`);
 
 });
