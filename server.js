@@ -10,19 +10,19 @@ app.use(cors())
 const spawner = require('child_process').spawn;
 
 // Fecha de Actualizado
-let fechas = "Mar. 19 de Nov 10:00 PM";
+let fechas = "Mié. 20 de Nov 11:15 AM";
 
 // Banco Central
-let tasabcv = 47.77;
+let tasabcv = 45.84;
 
 // Euro
 let tasaeuro = 48.53;
 
 // Monitor Dolar
-let tasamonitor = 55.20;
+let tasamonitor = 56.06;
 
 // Binance
-let tasabinance = 0;
+let tasabinance = 57.76;
 
 // PayPal
 let tasapaypal = 49.00;
@@ -33,27 +33,6 @@ let cur_version = 3;
 // Valor Alterable
 let xval = 4;
 
-const bnc_data = 10;
-
-const python_process = spawner('python', ['./apibnc.py', bnc_data]);
-
-python_process.stdout.on('data', (data) => {
-  
-  const intervals = setInterval(() =>{
-  tasabinance = data.toString();
-
-  app.get ('/info5', (req, res) =>{
-      res.setHeader('Content-Type', 'text/event-stream')
-      res.setHeader('Access-Control-Allow-Origin', '*')
-             
-    
-      const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
-      res.write(sendData5);
-  })
-  },2000);
-  // console.log(`Output: ${data.toString()}`);
-
-});
 
 // app.use((req, res, next) => {
 //   res.setHeader(
@@ -131,15 +110,33 @@ app.get ('/info2', (req, res) =>{
          
     })
 
-   // app.get ('/info5', (req, res) =>{
-   //      res.setHeader('Content-Type', 'text/event-stream')
-   //      res.setHeader('Access-Control-Allow-Origin', '*')
+    //   app.get ('/info5', (req, res) =>{
+    //     res.setHeader('Content-Type', 'text/event-stream')
+    //     res.setHeader('Access-Control-Allow-Origin', '*')
          
 
-   //        const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
-   //        res.write(sendData5);
+    //       const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+    //       res.write(sendData5);
 
-   //  })
+    // })
+
+    const bnc_data = 10;
+
+const python_process = spawner('python', ['./apibnc.py', bnc_data]);
+
+python_process.stdout.on('data', (data) => {
+
+  app.get ('/info5', (req, res) =>{
+      res.setHeader('Content-Type', 'text/event-stream')
+      res.setHeader('Access-Control-Allow-Origin', '*')
+             
+      tasabinance = data.toString();
+    
+      const sendData5 = `data: ${JSON.stringify(tasabinance) +' Bs.'}\n\n`;
+      res.write(sendData5);
+  })
+
+});
 
       app.get ('/info6', (req, res) =>{
         res.setHeader('Content-Type', 'text/event-stream')
